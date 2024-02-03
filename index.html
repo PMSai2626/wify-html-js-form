@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation - Easy Tutorials YouTube Channel</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <form>
+     
+      <h1 style="text-align: center;">Wify Json form test</h1>
+      <div style="text-align: center;">
+        <label > Name:</label><br />
+        <input type="text" placeholder="Enter  Name" onkeyup="validateName()"  id="user-name"> <br/>
+          <span id="name-error" class="p-er"></span> <br/>
+    
+
+      
+        <label>Mobile number:</label>  <br />
+        <input type="number" placeholder="Enter mobile number"  onkeyup="validatePhone()" id="mobile_no"   ><br />
+        <span id="phone-error" class="p-er"></span> <br/>
+
+     
+        <label>Email: </label> <br />
+        <input type="email" placeholder="Enter Email" onkeyup="validateEmail()" id="email"> <br />
+        <span id="email-error" class="p-er"></span> <br/>
+     
+    </div>
+
+    <button onclick="return valideateFrom()" >Submit</button>
+    <span id="submit-error" class="p-er"></span> <br/>
+   
+  </form>
+  </div>
+
+  <script> 
+
+    let nameError = document.getElementById("name-error");
+    let phoneError = document.getElementById("phone-error");
+    let emailError = document.getElementById("email-error");
+    let submitError = document.getElementById("submit-error");
+
+      function validateName(){
+        let name = document.getElementById("user-name").value;
+        const maxLength = 50
+        const nameid = document.getElementById("user-name");
+        if(nameid.maxLength > maxLength){
+            nameError.innerHTML = "name should be less than 50"
+            return false
+        }
+
+        if (name.length === 0){
+          nameError.innerHTML = ( "name is required" );
+          return false
+        }
+        nameError.innerHTML = ""
+
+       
+      }
+
+      function validatePhone(){
+       
+
+        let phone = document.getElementById("mobile_no").value;
+        const maxLength = 10
+        
+        if(phone.length == 0  ){
+          phoneError.innerHTML = ("phone is required")
+          return false
+        }
+        if (phone.length !== maxLength ){
+          phoneError.innerHTML = "phone no should be 10 digits"
+          return false
+        }
+        if(!phone.match(/^[0-9]{10}$/)){
+          phoneError.innerHTML = ("only digits please");
+          return false
+        }
+        phoneError.innerHTML =""
+      }
+      
+
+      function validateEmail(){
+        let email = document.getElementById("email").value;
+
+        if(email.length == 0){
+          emailError.innerHTML = ("Email is required");
+          return false
+        }
+        
+        if(!email.includes("@gmail.com")){
+            emailError.innerHTML = "enter correct email";
+            return false
+            
+          }
+          emailError.innerHTML = ""
+          return true
+        
+        if(!email.match(/^[A-Za-z\._\-[0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/)){
+          emailError.innerHTML = "enter correct email";
+          return false
+          
+        }
+        emailError.innerHTML = ""
+          return true
+
+        
+       
+      }
+
+      function valideateFrom(){
+        
+        if(validateName() || validatePhone() || validateEmail()){
+            const error = alert("Submitted Successfully"); 
+            return true
+            name.value = "";
+            phone.value = "";
+            email.value ="";
+          }
+
+         if(!validateName() || !validatePhone() || !validateEmail()){
+          alert("Please Enter correct details");
+          return false
+        }
+        
+        
+      }
+
+
+
+
+  </script>
+   
+</body>
+</html>
